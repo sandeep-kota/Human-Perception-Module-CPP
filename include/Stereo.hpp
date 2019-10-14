@@ -22,7 +22,7 @@
  */	
 class Stereo {
  private:
-    cv::Ptr<StereoBM> bm;
+    cv::Ptr<cv::StereoBM> bm;
     double camera_focal_length;
     double camera_baseline;
 
@@ -48,7 +48,7 @@ class Stereo {
      * @param cv::Mat Right image
      * @return cv::Mat Disparity map
      */
-    cv::Mat getDisparity(cv::Mat imgL, cv::imgR);
+    cv::Mat getDisparity(cv::Mat imgL, cv::Mat imgR);
 };
 
 #endif  // INCLUDE_STEREO_HPP_

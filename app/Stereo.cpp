@@ -17,12 +17,12 @@
 #include <Stereo.hpp>
 
 Stereo::Stereo() {
-cv::Ptr<StereoBM> bm;
-double camera_focal_length = 0;  //  Random stub values.
-double camera_baseline = 0;  //  Random stub values.
+    cv::Ptr<cv::StereoBM> bm;
+    double camera_focal_length = 0;  //  Random stub values.
+    double camera_baseline = 0;  //  Random stub values.
 }
 
-cv::Mat Stereo::getDisparity(cv::Mat imgL, cv::imgR) {
-cv::Mat disparity = cv::Mat::zeros(100, 100);  //  Random stub values.
-return disparity;
+cv::Mat Stereo::getDisparity(cv::Mat imgL, cv::Mat imgR) {
+    cv::Mat disparity = cv::Mat::zeros(100, 100, 1);  //  Random stub values.
+    return disparity;
 }

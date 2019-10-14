@@ -4,7 +4,7 @@
  * @copyright 3-Clause BSD License
  *
  * @file Scene.hpp
- * @brief Stereo class definition.
+ * @brief Scene class definition.
  *
  * @author Sandeep Kota Sai Pavan
  * @author Satyarth Praveen
@@ -27,11 +27,11 @@
  */ 
 class Scene {
  private:
-    cv::Mat imgl;
+    cv::Mat imgL;
     cv::Mat imgR;
     Stereo ster;
     HumanDetector hd;
-    std::vector<std::vector<float>> distance;
+    std::vector<std::vector<double>> distance;
 
  public:
     /**
@@ -53,10 +53,10 @@ class Scene {
      * w.r.t sensor frame.
      * @param cv::Mat Left image
      * @param cv::Mat Right image
-     * @return std::vector<std::vector<float>> Coordinates
+     * @return std::vector<std::vector<double>> Coordinates
      * of obstacles w.r.t to sensor frame.
      */
-    std::vector<std::vector<float>> locateObstacle(cv::Mat imgL, cv::imgR);
+    std::vector<std::vector<double>> locateObstacle(cv::Mat imgL, cv::Mat imgR);
 };
 
 #endif  // INCLUDE_SCENE_HPP_

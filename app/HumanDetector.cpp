@@ -5,7 +5,6 @@
  *
  * @file HumanDetector.cpp
  * @brief HumanDetector class implementation.
- *
  * It contains the function definition to compute the human
  * bounding box labels of humans label from the YOLO_v3 model.
  *
@@ -20,15 +19,13 @@
 #include <opencv2/opencv.hpp>
 #include <HumanDetector.hpp>
 
-
-
 HumanDetector::HumanDetector() {
-config_file_path = "./";  //  Random stub values.
-weight_file_path = "./";  //  Random stub values.
+    config_file_path = "./";  //  Random stub values.
+    weight_file_path = "./";  //  Random stub values.
 }
 
 std::vector<std::vector<int>> HumanDetector::predict(cv::Mat img) {
-std::vector<int> bounding_box = [30, 40, 70, 20];  //  Random stub values.
-pred_labels.emplace_back(bounding_box);
-return pred_labels;
+    std::vector<int> bounding_box = {30, 40, 70, 20};  //  Random stub values.
+    pred_labels.emplace_back(bounding_box);
+    return pred_labels;
 }

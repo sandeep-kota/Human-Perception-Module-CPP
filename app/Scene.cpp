@@ -16,13 +16,9 @@
 #include <opencv2/opencv.hpp>
 #include <Scene.hpp>
 
-Scene::Scene() {
-camera_focal_length = 0;
-camera_baseline = 0;
-}
-
-std::vector<std::vector<float>> locateObstacle(cv::Mat imgL, cv::imgR) {
-std::vector<int> dist = [10.5, 5.5, 4.5];  //  Random stub values.
-distance.emplace_back(dist);
-return dist;
+std::vector<std::vector<double>> Scene::locateObstacle(cv::Mat imgL, \
+                                                     cv::Mat imgR) {
+    std::vector<double> dist = {10.5, 5.5, 4.5};  //  Random stub values.
+    distance.emplace_back(dist);
+    return distance;
 }

@@ -16,18 +16,18 @@ Human detector module is an open-source perception module for the autonomous veh
 
 ## Personnel
 
- - Sandeep Kota Sai Pavan (Email: skotasai@umd.edu, LinkedIn: [Link](https://www.linkedin.com/in/sandeepkota341997/)): A graduate student of Masters in Engineering - Robotics at University of Maryland, College Park. I'm a robotics enthusiast having expereince of working at Shafiee Lab, Harvard Medical School and an autonomous vehicle company, FLUX Auto. 
+ - Sandeep Kota Sai Pavan (Email: skotasai@umd.edu, LinkedIn: [Link](https://www.linkedin.com/in/sandeepkota341997/)): A graduate student of Masters in Engineering - Robotics at University of Maryland, College Park. I'm a robotics enthusiast interested in autonomous vehicles and deep learning.
 
   - Satyarth Praveen (Email: satyarth@umd.edu, LinkedIn: [Link](https://www.linkedin.com/in/satyarth934/)): I am currently a Robotics graduate student and a Graduate Teaching Assistant with the Department of Mathematics at the University of Maryland College Park. I was previously employed at Hi-Tech Robotic Systemz where I was involved with the perception group of the Unmanned Ground Vehicles (autonomous vehicles). I find my interest in Artificial Intelligence.
 
 
 ## Project Overview
 
-This project is implementation of a human obstace detector for an autonomous vehicle software stack. 
+This project is the implementation of a human obstace detector for an autonomous vehicle software stack. 
 
 ## Application
 
-Pedestrians are given the maximum priority on road as it deals with the lives of the people. Hence, it is critical for the autonomus vehicle to predict the humans with maximum accuracy. Developing a dedicated human detector module helps in achieving improved prediction accuracies for this specific tasks without effect on the other perception modules.
+Pedestrian detection should be given the maximum priority in an autonomous vehicle software stack as it deals with the lives of the people. Hence, it is critical for the autonomus vehicle to predict the humans with maximum accuracy. Developing a dedicated human detector module helps in achieving improved prediction accuracies for this specific tasks without effect on the other perception modules.
 
 ## Development using Agile Iterative Process (AIP) and Test-Driven Development
 
@@ -37,7 +37,12 @@ After planning the product backlog, UML flow diagram and UML class diagram for t
 
 The link for the product backlog, time log, error log and release log can be found here - [link](https://docs.google.com/spreadsheets/d/1rYvf9irYzHiKXC8cMER0napgb6baDQarvmbKatu3GEE/edit#gid=0) 
 
+The link for the sprint review document can be found here - [link](https://docs.google.com/document/d/1CCiGZ9hGHj-srvOm2HJ4VLTRWsmWSxb5OKR4h5AfE5U/edit?usp=sharing)
+
 ## License
 
 This software is released under the [BSD 3-Clause license](./LICENSE). 
 
+## CURRENT STATUS
+
+This work is stil under development and is expected to be completed in another week. 

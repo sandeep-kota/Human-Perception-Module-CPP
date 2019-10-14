@@ -1,3 +1,5 @@
+plugins: [[lein-localrepo "0.5.3"] [lein-midje "3.1.3"]]
+
 # We need a decent ubuntu dist
 sudo: required
 dist: trusty
@@ -5,6 +7,12 @@ dist: trusty
 # Modern cpp settings from
 #  http://genbattle.bitbucket.org/blog/2016/01/17/c++-travis-ci/
 language: cpp
+language: clojure
+script: lein2 midje
+lein: lein2
+lein: lein2
+jdk:
+  - oraclejdk7
 matrix:
   include:
     - os: linux
@@ -22,8 +30,30 @@ matrix:
 
 before_install:
   - pip install --user cpp-coveralls
+  - sudo apt-get update
+
 install:
   - sudo apt-get install -y -qq lcov
+  - sudo apt-get install python-dev python-numpy
+
+
+before_script:
+  - git clone https://github.com/Itseez/opencv.git
+  - cd opencv
+  - git checkout 2.4
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j8
+  - sudo make -j8 install
+  - cd ../..
+  - mkdir -p native/linux/x86_64
+  - cp opencv/build/lib/libopencv_java248.so native/linux/x86_64/libopencv_java248.so
+  - cp opencv/build/bin/opencv-248.jar .
+  - jar -cMf opencv-native-248.jar native
+  - lein2 localrepo install opencv-248.jar opencv/opencv 2.4.8
+  - lein2 localrepo install opencv-native-248.jar opencv/opencv-native 2.4.8
+
 script:
   - export CXX=$COMPILER;
   - mkdir build
@@ -38,3 +68,4 @@ after_success:
 
 notifications:
   email: false
+

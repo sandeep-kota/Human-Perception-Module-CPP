@@ -42,11 +42,11 @@ TEST(StereoTest, disparityTest) {
 	// Computing disparity
 	Stereo st_obj;
 	cv::Mat disparity_image = st_obj.getDisparity(frame_l, frame_r);
-	
+
 	// Setting all invalid disparity values to 0
 	disparity_image.setTo(0, disparity_image < 0); 
 	disparity_image.convertTo(disparity_image, CV_8UC1);
-
+	
 	// Masking the ground truth disparity values with computed disparity 
 	cv::Mat masked_gt = frame_d & disparity_image;
 
@@ -56,18 +56,10 @@ TEST(StereoTest, disparityTest) {
 
 	// Computing average error margin in disparity estimation
 	int mean_error = 0;
-    int nonzero_pixel_count = 0;
-    for (int r = 0; r < diff.rows; ++r) {
-        for (int c = 0; c < diff.cols; ++c) {
-            if (diff.at<int>(r, c) <= 0) {
-                continue;
-            }
-            mean_error += diff.at<int>(r, c);
-            ++nonzero_pixel_count;
-        }
-    }
+    int nonzero_pixel_count = diff.total();
+    mean_error = cv::sum(diff)[0];
     if (nonzero_pixel_count > 0) {
-	    mean_error /= nonzero_pixel_count;
+	    mean_error = mean_error/nonzero_pixel_count;
 
 		EXPECT_LE(mean_error, 3);
     }

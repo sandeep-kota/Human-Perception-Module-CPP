@@ -34,7 +34,7 @@ install:
   - git checkout 3.4.5
   - cd ..
   - git clone https://github.com/opencv/opencv_contrib.git
-  - git opencv_contrib/
+  - cd opencv_contrib/
   - git checkout 3.4.5
   - cd ..
   - cd opencv

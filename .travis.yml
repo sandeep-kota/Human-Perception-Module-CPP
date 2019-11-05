@@ -53,7 +53,7 @@ install:
   - sudo ldconfig
   - cd ../../models
   - wget https://pjreddie.com/media/files/yolov3.weights
-  - cd ../..
+  - cd ../
 
 script:
   - export CXX=$COMPILER;

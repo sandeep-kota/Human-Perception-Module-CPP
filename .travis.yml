@@ -30,7 +30,13 @@ install:
   - sudo apt-get install -y python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
 
   - git clone https://github.com/opencv/opencv.git
+  - cd opencv/
+  - git checkout 3.4.5
+  - cd ..
   - git clone https://github.com/opencv/opencv_contrib.git
+  - git opencv_contrib/
+  - git checkout 3.4.5
+  - cd ..
   - cd opencv
 
   # Create a new 'build' folder.
@@ -38,7 +44,7 @@ install:
   - cd build
 
   # Set build instructions for Ubuntu distro.
-  - cmake -D CMAKE_BUILD_TYPE=RELEASE -D BUILD_EXAMPLES=OFF -D BUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D CMAKE_INSTALL_PREFIX=/usr/local ..
+  - cmake -D CMAKE_BUILD_TYPE=RELEASE -D BUILD_EXAMPLES=OFF -D BUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D CMAKE_INSTALL_PREFIX=/usr/local ..
 
   # Run 'make' with four threads.
   - make -j4

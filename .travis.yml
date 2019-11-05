@@ -48,7 +48,7 @@ install:
 
   # Run 'make' with four threads.
   - make -j4
-  - cd ..
+  - cd ../..
 
 script:
   - export CXX=$COMPILER;

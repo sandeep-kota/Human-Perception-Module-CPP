@@ -60,7 +60,6 @@ TEST(StereoTest, disparityTest) {
     mean_error = cv::sum(diff)[0];
     if (nonzero_pixel_count > 0) {
 	    mean_error = mean_error/nonzero_pixel_count;
-
 		EXPECT_LE(mean_error, 3);
     }
 }

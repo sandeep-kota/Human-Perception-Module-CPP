@@ -3,7 +3,7 @@
 ENPM808X-Mid Term Project
 
 [![Build Status](https://travis-ci.org/sandeep-kota/TerpBotics-Human-Perception-Module.svg?branch=master)](https://travis-ci.org/sandeep-kota/TerpBotics-Human-Perception-Module)
-[![Coverage Status](https://coveralls.io/repos/github/sandeep-kota/TerpBotics-Human-Perception-Module/badge.svg?branch=masterg)](https://coveralls.io/github/sandeep-kota/TerpBotics-Human-Perception-Module?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sandeep-kota/TerpBotics-Human-Perception-Module/badge.svg?branch=master)](https://coveralls.io/github/sandeep-kota/TerpBotics-Human-Perception-Module?branch=master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ---
 

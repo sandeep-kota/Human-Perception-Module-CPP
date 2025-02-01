@@ -1,10 +1,7 @@
-# We need a decent ubuntu dist
+dist: focal  # Ubuntu 20.04 LTS
 sudo: required
-dist: trusty
-
-# Modern cpp settings from
-#  http://genbattle.bitbucket.org/blog/2016/01/17/c++-travis-ci/
 language: cpp
+
 matrix:
   include:
     - os: linux
@@ -13,54 +10,66 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - george-edison55-precise-backports
           packages:
-            - g++-5
+            - g++-9
             - cmake
             - cmake-data
-      env: COMPILER=g++-5
+            - lcov
+            - build-essential
+            - libgtk2.0-dev 
+            - pkg-config 
+            - libavcodec-dev 
+            - libavformat-dev 
+            - libswscale-dev
+            - python3-dev 
+            - python3-numpy 
+            - libtbb2 
+            - libtbb-dev 
+            - libjpeg-dev 
+            - libpng-dev 
+            - libtiff-dev 
+            - libdc1394-22-dev
+      env: 
+        - COMPILER=g++-9
+        - OPENCV_VERSION=3.4.5
 
 before_install:
   - pip install --user cpp-coveralls
+
 install:
-  - sudo apt-get install -y -qq lcov
-    # OpenCV dependencies - Details available at: http://docs.opencv.org/trunk/doc/tutorials/introduction/linux_install/linux_install.html
-  - sudo apt-get install -y build-essential
-  - sudo apt-get install -y cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-  - sudo apt-get install -y python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-
-  - git clone https://github.com/opencv/opencv.git
-  - cd opencv/
-  - git checkout 3.4.5
-  - cd ..
-  - git clone https://github.com/opencv/opencv_contrib.git
-  - cd opencv_contrib/
-  - git checkout 3.4.5
-  - cd ..
+  # OpenCV installation
+  - git clone --branch ${OPENCV_VERSION} --depth 1 https://github.com/opencv/opencv.git
+  - git clone --branch ${OPENCV_VERSION} --depth 1 https://github.com/opencv/opencv_contrib.git
   - cd opencv
-
-  # Create a new 'build' folder.
   - mkdir build
   - cd build
-
-  # Set build instructions for Ubuntu distro.
-  - cmake -D CMAKE_BUILD_TYPE=RELEASE -D BUILD_EXAMPLES=OFF -D BUILD_opencv_apps=OFF -D BUILD_DOCS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -D CMAKE_INSTALL_PREFIX=/usr/local ..
-
-  # Run 'make' with four threads.
-  - make -j4
+  - cmake -D CMAKE_BUILD_TYPE=RELEASE 
+          -D BUILD_EXAMPLES=OFF 
+          -D BUILD_opencv_apps=OFF 
+          -D BUILD_DOCS=OFF 
+          -D BUILD_PERF_TESTS=OFF 
+          -D BUILD_TESTS=OFF 
+          -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules 
+          -D CMAKE_INSTALL_PREFIX=/usr/local 
+          -D ENABLE_FAST_MATH=ON 
+          -D WITH_TBB=ON 
+          ..
+  - make -j$(nproc)
   - sudo make install
-  - sudo sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
   - sudo ldconfig
-  - cd ../../models
-  - wget https://pjreddie.com/media/files/yolov3.weights
-  - cd ../
+  - cd ../..
+  
+  # Download YOLO weights
+  - cd models
+  - wget --no-check-certificate https://pjreddie.com/media/files/yolov3.weights
+  - cd ..
 
 script:
-  - export CXX=$COMPILER;
+  - export CXX=$COMPILER
   - mkdir build
-  - cd build/
+  - cd build
   - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
-  - make
+  - make -j$(nproc)
   - test/cpp-test
 
 after_success:
@@ -69,3 +78,7 @@ after_success:
 notifications:
   email: false
 
+cache:
+  directories:
+    - opencv/build
+    - opencv_contrib
